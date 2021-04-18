@@ -6,7 +6,7 @@ from marshmallow import fields
 from marshmallow_sqlalchemy import ModelSchema
 from datetime import datetime, date
 
-UPLOAD_FOLDER = 'static/images/dataset'
+UPLOAD_FOLDER = 'static/images'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 

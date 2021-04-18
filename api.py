@@ -38,3 +38,22 @@ def update_nasabah_by_id(id):
     nasabah = nasabah_schema.dump(get_nasabah)
 
     return make_response(jsonify({"nasabah": nasabah}))
+
+# route untuk otentikasi by id
+@app.route('/api/v1/otentikasi/<id>', methods = ['PUT'])
+def otentikasi_by_id(id):
+    # cek apakah img, id dan nama tersedia
+    if request.files['img'] and request.form['id_nasabah']:
+        # tangkap img dan id_nasabah dari form
+        id_nasabah = request.form['id_nasabah']
+        f = request.files['img']
+        filename = secure_filename(f.filename)
+
+        # cek direktori kalo belum ada
+        # buat direktori folder sesuai nama
+        if not os.path.isdir(os.path.join(app.config['UPLOAD_FOLDER'], 'auth',id_nasabah)):
+            os.mkdir(os.path.join(app.config['UPLOAD_FOLDER'], 'auth',id_nasabah), 0o777)
+        f.save(os.path.join(app.config['UPLOAD_FOLDER'], 'auth',id_nasabah, filename))
+        return make_response(jsonify({"response": "file berhasil disimpan di folder"+id_nasabah}))
+    return make_response(jsonify({"response": "file kosong!!"}))
+    
