@@ -13,17 +13,19 @@ class Nasabah(db.Model):
     nama = db.Column(db.String(60), nullable=False)
     phone = db.Column(db.String(13), nullable=False)
     foto = db.Column(db.String(255), nullable=False)
+    foto_auth = db.Column(db.String(255), nullable=False)
     alamat = db.Column(db.Text(), nullable=False)
     isAuth = db.Column(db.String(5), nullable=False)
     date_register = db.Column(db.DateTime(), nullable=True, default=datetime.now())
     date_auth = db.Column(db.DateTime(), nullable=True, default=datetime.now())
     auth_similarity = db.Column(db.Float(), nullable=True, default=0.0)
 
-    def __init__(self, id_nasabah, nama, phone, foto, alamat, isAuth, date_register, date_auth, auth_similarity):
+    def __init__(self, id_nasabah, nama, phone, foto, foto_auth, alamat, isAuth, date_register, date_auth, auth_similarity):
         self.id_nasabah = id_nasabah
         self.nama = nama
         self.phone = phone
         self.foto = foto
+        self.foto_auth = foto_auth
         self.alamat = alamat
         self.isAuth = isAuth
         self.date_register = date_register
@@ -51,6 +53,7 @@ class NasabahSchema(ModelSchema):
     nama = fields.String(required=True)
     phone = fields.String(required=True)
     foto = fields.String(required=True)
+    foto_auth = fields.String(required=True)
     alamat = fields.String(required=True)
     isAuth = fields.String(required=False)
     date_register = fields.DateTime(required=False)
