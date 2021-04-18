@@ -53,8 +53,11 @@ def insert():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
+            # cek direktori kalo belum ada
             # buat direktori folder sesuai nama
-            os.mkdir(os.path.join('static/images/dataset',request.form['name']))
+            if not os.path.isdir(os.path.join(app.config['UPLOAD_FOLDER'],request.form['name'])):
+                os.mkdir(os.path.join(app.config['UPLOAD_FOLDER'],request.form['name']), 0o777)
+
             file.save(os.path.join(app.config['UPLOAD_FOLDER'] ,request.form['name'] ,filename))
             # data untuk disimpan di database
             name = request.form['name']
