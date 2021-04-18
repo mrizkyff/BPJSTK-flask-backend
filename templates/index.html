@@ -14,9 +14,9 @@ Home
         <div class="col md-12">
             <div class="jumbotron p-3">
                 <h2>Manage
-                    <b>Employees</b>
+                    <b>Nasabah</b>
                     <button type="button" class="btn btn-success float-right" data-toggle="modal"
-                        data-target="#addModal">Add New Employees</button>
+                        data-target="#addModal">Tambah Nasabah Baru</button>
                 </h2>
 
                 
@@ -38,23 +38,33 @@ Home
 
                 <table class="table table-hover">
                     <tr>
-                        <td>ID</td>
-                        <td>Name</td>
-                        <td>Email</td>
-                        <td>Phone</td>
+                        <td>ID_Nasabah</td>
+                        <td>Nama</td>
+                        <td>No. Hp</td>
                         <td>Foto</td>
+                        <td>Foto Auth</td>
+                        <td>Alamat</td>
+                        <td>isAuth</td>
+                        <td>Date Reg.</td>
+                        <td>Date Auth.</td>
+                        <td>Auth. Sim</td>
                         <td>Action</td>
                     </tr>
                     
-                    {% for row in employees %}
+                    {% for row in nasabah %}
                         
                         
                     <tr>
-                        <td>{{row.id}}</td>
-                        <td>{{row.name}}</td>
-                        <td>{{row.email}}</td>
+                        <td>{{row.id_nasabah}}</td>
+                        <td>{{row.nama}}</td>
                         <td>{{row.phone}}</td>
                         <td>{{row.foto}}</td>
+                        <td>{{row.foto_auth}}</td>
+                        <td>{{row.alamat}}</td>
+                        <td>{{row.isAuth}}</td>
+                        <td>{{row.date_register}}</td>
+                        <td>{{row.date_auth}}</td>
+                        <td>{{row.auth_similarity}}</td>
                         <td>
                             <a href="" class="btn btn-warning btn-xs" data-toggle="modal"
                                 data-target="#editModal{{row.id}}">Edit</a>

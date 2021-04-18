@@ -2,7 +2,7 @@ from nasabah import *
 
 # route untuk get all nasabah
 @app.route('/api/v1/nasabah', methods=['GET'])
-def index():
+def get_all_nasabah():
     get_nasabah = Nasabah.query.all()
     nasabah_schema = NasabahSchema(many=True)
     nasabah = nasabah_schema.dump(get_nasabah)
