@@ -28,13 +28,19 @@ def get_nasabah_by_id(id):
 # route untuk update nasabah by id
 @app.route('/api/v1/nasabah/<id>', methods = ['PUT'])
 def update_nasabah_by_id(id):
+    today = datetime.now()
     data = request.get_json()
     get_nasabah = Nasabah.query.get(id)
     if data.get('isAuth'):
         get_nasabah.isAuth = data['isAuth']
+    if data.get('auth_similarity'):
+        get_nasabah.auth_similarity = data['auth_similarity']
+    if data.get('foto_auth'):
+        get_nasabah.foto_auth = data['foto_auth']
+    get_nasabah.date_auth = today
     db.session.add(get_nasabah)
     db.session.commit()
-    nasabah_schema = NasabahSchema(only=['id', 'id_nasabah', 'nama', 'phone', 'foto', 'alamat', 'isAuth', 'date_register', 'date_auth'])
+    nasabah_schema = NasabahSchema(only=['id', 'id_nasabah', 'nama', 'phone', 'foto', 'foto_auth', 'alamat', 'isAuth', 'date_register', 'date_auth', 'auth_similarity'])
     nasabah = nasabah_schema.dump(get_nasabah)
 
     return make_response(jsonify({"nasabah": nasabah}))
