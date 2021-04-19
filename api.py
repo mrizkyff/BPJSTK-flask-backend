@@ -69,7 +69,23 @@ def otentikasi_by_id(id):
         path_foto = os.path.join(app.config['UPLOAD_FOLDER'],id_nasabah, 'dataset', foto)
         array_auth = perhitungan_face_recognition(f, path_foto)
 
+        # proses update database
+        today = datetime.now()
+        data = request.get_json()
+        get_nasabah = Nasabah.query.get(id)
+        if str(array_auth['is_identified']):
+            get_nasabah.isAuth = str(array_auth['is_identified'])
+        if float(array_auth['similarity']):
+            get_nasabah.auth_similarity = float(array_auth['similarity'])
+        if str(filename):
+            get_nasabah.foto_auth = filename
+        get_nasabah.date_auth = today
+        db.session.add(get_nasabah)
+        db.session.commit()
+        nasabah_schema = NasabahSchema(only=['id', 'id_nasabah', 'nama', 'phone', 'foto', 'foto_auth', 'alamat', 'isAuth', 'date_register', 'date_auth', 'auth_similarity'])
+        nasabah = nasabah_schema.dump(get_nasabah)
 
-        return make_response(jsonify({"response": str(array_auth)}))
-    return make_response(jsonify({"response": "file kosong!!"}))
+
+        return make_response(jsonify({"response": "true"}))
+    return make_response(jsonify({"response": "false"}))
     
