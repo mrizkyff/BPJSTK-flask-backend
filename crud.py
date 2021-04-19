@@ -10,6 +10,7 @@ def index():
 
 @app.route('/insert', methods= ['POST'])
 def insert():
+    today = datetime.now()
     if request.method == 'POST':
         if 'foto' not in request.files:
             flash('No File Part')
@@ -20,21 +21,30 @@ def insert():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
+            id_nasabah = request.form['id_nasabah']
             # cek direktori kalo belum ada
             # buat direktori folder sesuai nama
-            if not os.path.isdir(os.path.join(app.config['UPLOAD_FOLDER'],request.form['name'])):
-                os.mkdir(os.path.join(app.config['UPLOAD_FOLDER'],request.form['name']), 0o777)
+            if not os.path.isdir(os.path.join(app.config['UPLOAD_FOLDER'],id_nasabah, 'dataset')):
+                if not os.path.isdir(os.path.join(app.config['UPLOAD_FOLDER'],id_nasabah)):
+                    os.mkdir(os.path.join(app.config['UPLOAD_FOLDER'], id_nasabah), 0o777)
+                os.mkdir(os.path.join(app.config['UPLOAD_FOLDER'], id_nasabah, 'dataset'), 0o777)
 
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'] ,request.form['name'] ,filename))
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'] ,id_nasabah, 'dataset' ,filename))
             # data untuk disimpan di database
-            name = request.form['name']
-            email = request.form['email']
+            id_nasabah = request.form['id_nasabah']
+            nama = request.form['nama']
             phone = request.form['phone']
             foto = filename
-            mydata = Data(name, email, phone, foto)
-            db.session.add(mydata)
+            foto_auth = "null"
+            alamat = request.form['alamat']
+            isAuth = "false"
+            date_register = today
+            date_auth = today
+            auth_similarity = 0.0
+            myNasabah = Nasabah(id_nasabah, nama, phone, foto, foto_auth, alamat, isAuth, date_register, date_auth, auth_similarity)
+            db.session.add(myNasabah)
             db.session.commit()
-            flash("Employee Inserted Successfully")
+            flash("Nasabah Berhasil Ditambahkan")
             return redirect(url_for('index'))
 
 

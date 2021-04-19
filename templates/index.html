@@ -46,7 +46,7 @@ Home
                         <td>Alamat</td>
                         <td>isAuth</td>
                         <td>Date Reg.</td>
-                        <td>Date Auth.</td>
+                        <td>Last Auth.</td>
                         <td>Auth. Sim</td>
                         <td>Action</td>
                     </tr>
@@ -134,7 +134,7 @@ Home
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add New Employees</h5>
+                <h5 class="modal-title">Tambah Nasabah Baru</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -143,23 +143,27 @@ Home
                 <div class="container-fluid">
                     <form action="/insert" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" name="name" id="name" required="1">
+                            <label for="id_nasabah">ID Nasabah</label>
+                            <input type="text" class="form-control" name="id_nasabah" id="id_nasabah" required="1">
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" name="email" id="email" required="1">
+                            <label for="nama">Nama Nasabah</label>
+                            <input type="text" class="form-control" name="nama" id="nama" required="1">
                         </div>
                         <div class="form-group">
-                            <label for="phone">Phone</label>
+                            <label for="phone">Nomor HP</label>
                             <input type="text" class="form-control" name="phone" id="phone" required="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="alamat">Alamat</label>
+                            <input type="text" class="form-control" name="alamat" id="alamat" required="1">
                         </div>
                         <div class="form-group">
                             <label for="foto">Foto</label>
                             <input type="file" class="form-control" name="foto" id="foto" required="1">
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-primary" type="submit">Add Employee</button>
+                            <button class="btn btn-primary" type="submit">Simpan</button>
                         </div>
                     </form>
                 </div>

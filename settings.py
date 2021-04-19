@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 from marshmallow import fields
 from marshmallow_sqlalchemy import ModelSchema
-from datetime import datetime, date
+from datetime import datetime
 
 UPLOAD_FOLDER = 'static/images'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}

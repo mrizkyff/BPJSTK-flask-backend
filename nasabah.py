@@ -60,3 +60,7 @@ class NasabahSchema(ModelSchema):
     date_auth = fields.DateTime(required=False)
     auth_similarity = fields.Float(required=False)
 
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
