@@ -55,8 +55,10 @@ Home
             <td>{{row.id_nasabah}}</td>
             <td>{{row.nama}}</td>
             <td>{{row.phone}}</td>
-            <td><img src="{{url_for('static', filename='/images/'+row.id_nasabah+'/dataset/'+row.foto)}}" alt="" style="width: 150px;"></td>
-            <td><img src="{{url_for('static', filename='/images/'+row.id_nasabah+'/auth/'+row.foto_auth)}}" alt="" style="width: 150px;"></td>
+            <td><img src="{{url_for('static', filename='/images/'+row.id_nasabah+'/dataset/'+row.foto)}}" alt=""
+                    style="width: 150px;"></td>
+            <td><img src="{{url_for('static', filename='/images/'+row.id_nasabah+'/auth/'+row.foto_auth)}}" alt=""
+                    style="width: 150px;"></td>
             <td>{{row.alamat}}</td>
             <td>{{row.isAuth}}</td>
             <td>{{row.date_register}}</td>
@@ -107,6 +109,8 @@ Home
                         <div class="form-group">
                             <label for="foto">Foto</label>
                             <input type="file" class="form-control" name="foto" id="foto" required="1">
+                            <!-- <input type="file" id="capture" name="foto" accept="image/*" capture multiple /> -->
+                            <!-- <input type="file" accept="image/*;capture=camera"> -->
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary" type="submit">Simpan</button>
