@@ -1,4 +1,5 @@
 from nasabah import *
+from face_recog import perhitungan_face_recognition
 
 # route untuk get all nasabah
 @app.route('/api/v1/nasabah', methods=['GET'])
@@ -52,6 +53,7 @@ def otentikasi_by_id(id):
     if request.files['img'] and request.form['id_nasabah']:
         # tangkap img dan id_nasabah dari form
         id_nasabah = str(request.form['id_nasabah'])
+        foto = str(request.form['foto'])
         f = request.files['img']
         filename = secure_filename(f.filename)
 
@@ -62,6 +64,12 @@ def otentikasi_by_id(id):
                 os.mkdir(os.path.join(app.config['UPLOAD_FOLDER'], id_nasabah), 0o777)
             os.mkdir(os.path.join(app.config['UPLOAD_FOLDER'], id_nasabah, 'auth'), 0o777)
         f.save(os.path.join(app.config['UPLOAD_FOLDER'],id_nasabah, 'auth', filename))
-        return make_response(jsonify({"response": "berhasi di upload"}))
+
+        # proses otentikasi 
+        path_foto = os.path.join(app.config['UPLOAD_FOLDER'],id_nasabah, 'dataset', foto)
+        array_auth = perhitungan_face_recognition(f, path_foto)
+
+
+        return make_response(jsonify({"response": str(array_auth)}))
     return make_response(jsonify({"response": "file kosong!!"}))
     
