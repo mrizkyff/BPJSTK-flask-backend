@@ -82,7 +82,7 @@ def otentikasi_by_id(id):
         data = request.get_json()
         get_nasabah = Nasabah.query.get(id)
         if str(array_auth['is_identified']):
-            get_nasabah.isAuth = str(array_auth['is_identified'])
+            get_nasabah.isAuth = str(array_auth['is_identified']).lower()
         if float(array_auth['similarity']):
             get_nasabah.auth_similarity = float(array_auth['similarity'])
         if str(filename):
