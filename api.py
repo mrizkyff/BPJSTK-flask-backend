@@ -26,6 +26,14 @@ def get_nasabah_by_id(id):
     nasabah = nasabah_schema.dump(get_nasabah)
     return make_response(jsonify({"nasabah": nasabah}))
 
+# route untuk get nasabah by id_nasabah
+@app.route('/api/v1/nasabahbyid/<id_nasabah>', methods = ['GET'])
+def get_nasabah_by_id_nasabah(id_nasabah):
+    get_nasabah = Nasabah.query.filter_by(id_nasabah=id_nasabah).first()
+    nasabah_schema = NasabahSchema()
+    nasabah = nasabah_schema.dump(get_nasabah)
+    return make_response(jsonify({"nasabah": nasabah}))
+
 # route untuk update nasabah by id
 @app.route('/api/v1/nasabah/<id>', methods = ['PUT'])
 def update_nasabah_by_id(id):
