@@ -19,7 +19,7 @@ def perhitungan_face_recognition(file_stream, known_stream):
 	if len(unknown_image_encoding) > 0:
 		face_found = True
 		# cek kecocokan
-		match_result = face_recognition.compare_faces([known_image_encoding], unknown_image_encoding)
+		match_result = face_recognition.compare_faces([known_image_encoding], unknown_image_encoding, 0.5)
 		# hitung jarak / perbedaan
 		diff = diff-(face_recognition.face_distance([known_image_encoding], unknown_image_encoding))
 
