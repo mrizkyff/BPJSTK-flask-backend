@@ -66,7 +66,7 @@ Home
             <td>{{row.auth_similarity}}</td>
             <td>
                 <a href="javascript:void(0);" class="btn btn-info btn-xs btnEdit" data-id="{{row.id}}"
-                    data-id_nasabah="{{row.id_nasabah}}" data-nama="{{row.nama}}">Edit {{row.id}}</a>
+                    data-id_nasabah="{{row.id_nasabah}}" data-nama="{{row.nama}}" data-phone="{{row.phone}}" data-alamat="{{row.alamat}}" data-isauth="{{row.isAuth}}" data-auth_similarity="{{row.auth_similarity}}">Edit</a>
                 <a href="/delete/{{row.id}}" class="btn btn-danger btn-xs"
                     onclick="return confirm('Really to delete?')">Delete</a>
             </td>
@@ -131,7 +131,7 @@ Home
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit Employees</h5>
+                <h5 class="modal-title">Edit Nasabah</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -140,24 +140,39 @@ Home
                 <div class="container-fluid">
                     <form action="{{url_for('update')}}" method="POST">
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="hidden" name="id" value="">
-                            <input type="text" class="form-control" name="name" id="name" required="1" value="">
+                            <label for="id_nasabahx">ID Nasabah</label>
+                            <input type="text" id="id">
+                            <input type="text" class="form-control" name="id_nasabahx" id="id_nasabahx" required="1">
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" name="email" id="email" required="1" value="">
+                            <label for="namax">Nama Nasabah</label>
+                            <input type="text" class="form-control" name="namax" id="namax" required="1">
                         </div>
                         <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="text" class="form-control" name="phone" id="phone" required="1" value="">
+                            <label for="phonex">Nomor HP</label>
+                            <input type="text" class="form-control" name="phonex" id="phonex" required="1">
                         </div>
                         <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="text" class="form-control" name="phone" id="phone" required="1" value="">
+                            <label for="alamatx">Alamat</label>
+                            <input type="text" class="form-control" name="alamatx" id="alamatx" required="1">
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-primary" type="submit">Update</button>
+                            <label for="isauthx">isAuth</label>
+                            <select name="isauthx" id="isauthx" class="form-control">
+                                <option value="false">False</option>
+                                <option value="True">True</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="authsimilarity">Auth Sim. </label>
+                            <input type="text" class="form-control" name="authsimilarityx" id="authsimilarityx" required="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="fotox">Foto</label>
+                            <input type="file" class="form-control" name="fotox" id="fotox" required="1">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="button" id="btnUpdate">Update</button>
                         </div>
                     </form>
                 </div>
@@ -174,18 +189,34 @@ Home
     $(document).ready(function () {
         $('.btnEdit').click(function (e) {
             e.preventDefault();
-            var id = $(this).data('id');
-            // $('#editModal').modal('show')
-            // $.ajax({
-            //     type: "GET",
-            //     url: "http://127.0.0.1:5000/nasabah/"+id,
-            //     data: "data",
-            //     dataType: "dataType",
-            //     success: function (response) {
+            // var id = ;
+            // var id_nasabah = ;
+            // var nama = ;
+            // var phone = ;
+            // var alamat = ;
+            // var isAuth = ;
+            // var auth_similarity = ;
 
-            //     }
-            // });
-            console.log(id)
+            $('#editModal').modal('show');
+
+            $('#id').val($(this).data('id'));
+            $('#id_nasabahx').val($(this).data('id_nasabah'));
+            $('#namax').val($(this).data('nama'));
+            $('#phonex').val($(this).data('phone'));
+            $('#alamatx').val($(this).data('alamat'));
+            $('#isauthx').val($(this).data('isauth'));
+            $('#authsimilarityx').val($(this).data('auth_similarity'));
+            
+            // console.log(id)
+            // console.log(id_nasabah)
+            // console.log(nama)
+            // console.log(phone)
+            // console.log(alamat)
+            // console.log(isAuth)
+            // console.log(auth_similarity)
+            // console.log('hehehe')
+
+
         });
     });
 </script>
